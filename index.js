@@ -86,19 +86,90 @@ export default {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joke Card</title>
-    <link href="/dist/output.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .joke {
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .typewriter {
+            display: none;
+            overflow: hidden;
+            border-right: .15em solid #007bff;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #007bff; }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex justify-center items-center h-screen m-0 font-sans">
-    <div class="bg-white rounded-lg shadow-md p-6 max-w-lg text-center">
-        <h2 class="text-gray-800 mb-4">Joke from Llama AI</h2>
-        <div class="mb-4 min-h-16" id="jokeContainer">${response.response}</div>
-        <button class="bg-blue-500 text-white rounded px-4 py-2 text-lg transition duration-300 hover:bg-blue-600" id="anotherJokeBtn">Another one</button>
-        <div class="spinner w-10 h-10 border-4 border-gray-200 border-t-4 border-blue-500 rounded-full animate-spin my-4" id="spinner"></div>
+<body>
+    <div class="card">
+        <h2>Joke from Llama AI</h2>
+        <div class="joke" id="jokeContainer">${response.response}</div>
+        <button id="anotherJokeBtn">Another one</button>
+        <div class="spinner" id="spinner"></div>
         <div>
-          <div class="typewriter overflow-hidden border-r-2 border-blue-500 whitespace-nowrap mx-auto tracking-wide animate-blink-caret" id="typewriter"></div>
+          <div class="typewriter" id="typewriter"></div>
         </div>
-        <div class="mt-4">
-            <img class="max-w-full h-auto rounded" src="https://loremflickr.com/320/240/${encodedTopic}" alt="Image related to ${topic}">
+        <div class="image-container">
+            <img src="https://loremflickr.com/320/240/${encodedTopic}" alt="Image related to ${topic}">
         </div>
     </div>
 
