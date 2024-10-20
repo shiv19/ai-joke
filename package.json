@@ -1,5 +1,11 @@
 {
   "name": "sweet-snow-96dc",
   "version": "1.0.0",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  },
+  "scripts": {
+    "build:css": "tailwindcss build src/styles/tailwind.css -o dist/output.css"
+  }
 }
